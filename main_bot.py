@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 
 owm = pyowm.OWM('6d00d1d4e704068d70191bad2673e0cc', language='ru')
-bot = telebot.TeleBot('1042683676:AAFEXKnt_5F9iw1HOKuzlU7geZTVahGIodM')
+bot = ''
 
 #===================
 # Weather showing ==
@@ -54,7 +54,7 @@ def check_air(message):
     else:
         analysis = 'Уровень загрязнения - экстримально высокий, будьте осторожны'
     bot.send_message(message.chat.id, analysis)
-    
+
     # PRESSURE
     meteopost_data = 'https://meteopost.com/weather/kiev/'
     # Requests ReadTimeOut exception catching
@@ -65,7 +65,7 @@ def check_air(message):
     meteopost_soup = BeautifulSoup(meteopost_page.content, 'html.parser')
     meteopost_convert = meteopost_soup.findAll('span', {'class': 'dat'})
 
-    
+
     pressure_full_value = meteopost_convert[5].text
     bot.send_message(message.chat.id, 'Давление воздуха: ' + pressure_full_value)
 
